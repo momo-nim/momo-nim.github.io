@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>毛雅欣 · 复旦大学经济学院保险系</title>
+<meta name="description" content="毛雅欣，复旦大学经济学院保险系保险专业硕士研究生（研一），研究方向为保险科技。">
+<meta name="theme-color" content="#fbfaf7">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --paper:#fbfaf7;
+    --paper-2:#f4f1ea;
+    --ink:#1d1c1a;
+    --ink-soft:#47433e;
+    --muted:#7a736a;
+    --line:#e6e1d6;
+    --line-soft:#eeeae1;
+    --accent:#2f5c4e;
+    --accent-ink:#24463b;
+    --accent-soft:#ecf1ee;
+    --serif:"Iowan Old Style","Palatino Linotype","Songti SC","STSong","SimSun",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans CJK SC",sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  html{
+    scroll-behavior:smooth;
+    -webkit-text-size-adjust:100%;
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
+  }
+
+  ::selection{background:var(--accent-soft);color:var(--accent-ink)}
+
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:100;
+    background:var(--accent);color:#fff;padding:10px 16px;font-size:.8125rem;
+  }
+  .skip:focus{left:12px;top:12px}
+
+  .wrap{
+    width:100%;
+    max-width:1040px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,40px);
+  }
+
+  /* ---------- 顶部导航 ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,250,247,.72);
+    -webkit-backdrop-filter:saturate(1.3) blur(14px);
+    backdrop-filter:saturate(1.3) blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .35s var(--ease), background .35s var(--ease);
+  }
+  .nav.is-scrolled{
+    border-bottom-color:var(--line);
+    background:rgba(251,250,247,.92);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:20px;height:66px;
+  }
+  .brand{
+    font-family:var(--serif);
+    font-size:1.0625rem;
+    letter-spacing:.14em;
+    text-decoration:none;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .links{display:flex;gap:clamp(14px,2.6vw,30px)}
+  .links a{
+    position:relative;
+    font-size:.8125rem;
+    letter-spacing:.1em;
+    color:var(--muted);
+    text-decoration:none;
+    padding:4px 0;
+    transition:color .25s var(--ease);
+  }
+  .links a::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:-2px;height:1px;
+    background:var(--accent);
+    transform:scaleX(0);transform-origin:left;
+    transition:transform .35s var(--ease);
+  }
+  .links a:hover{color:var(--ink)}
+  .links a.is-active{color:var(--ink)}
+  .links a.is-active::after{transform:scaleX(1)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:clamp(52px,8vw,104px) 0 clamp(48px,7vw,88px);
+    background:
+      radial-gradient(760px 420px at 8% -12%, #f2f4f0 0%, rgba(242,244,240,0) 62%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-mark{
+    width:clamp(210px,25vw,306px);
+    height:auto;
+    color:var(--line);
+    transform:rotate(-10deg);
+    flex:none;
+  }
+  .eyebrow{
+    display:flex;align-items:center;gap:14px;
+    margin:0 0 26px;
+    font-size:.75rem;
+    letter-spacing:.22em;
+    color:var(--muted);
+  }
+  .eyebrow::before{
+    content:"";width:34px;height:1px;background:var(--accent);opacity:.55;flex:none;
+  }
+  h1{
+    margin:0 0 22px;
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.8rem,7.4vw,4.75rem);
+    line-height:1.08;
+    letter-spacing:.08em;
+  }
+  .lede{
+    margin:0;
+    max-width:30em;
+    font-size:clamp(.9375rem,2vw,1.0625rem);
+    line-height:1.9;
+    color:var(--ink-soft);
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;
+    gap:8px 30px;
+    margin:34px 0 38px;padding:0;
+    list-style:none;
+    font-size:.875rem;
+    color:var(--ink-soft);
+  }
+  .hero-meta li{display:flex;align-items:baseline;gap:10px}
+  .hero-meta .k{
+    font-family:var(--mono);
+    font-size:.6875rem;
+    letter-spacing:.12em;
+    color:var(--accent);
+    opacity:.85;
+  }
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:12px 24px;
+    border-radius:2px;
+    background:var(--accent);
+    color:#fff;
+    font-size:.875rem;
+    letter-spacing:.1em;
+    text-decoration:none;
+    transition:background .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .btn:hover{background:var(--accent-ink);transform:translateY(-1px);box-shadow:0 6px 18px -10px rgba(47,92,78,.9)}
+  .btn svg{width:13px;height:13px;flex:none}
+  .btn-ghost{
+    background:transparent;color:var(--ink);
+    border:1px solid var(--line);
+  }
+  .btn-ghost:hover{background:var(--paper-2);border-color:#d9d3c6;color:var(--ink);box-shadow:none}
+
+  /* ---------- 通用 section ---------- */
+  .section{
+    padding:clamp(54px,7vw,84px) 0;
+    border-top:1px solid var(--line);
+    scroll-margin-top:76px;
+  }
+  .head{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:clamp(14px,3vw,24px);
+    align-items:baseline;
+    margin-bottom:clamp(26px,4vw,42px);
+  }
+  .head .idx{
+    font-family:var(--mono);
+    font-size:.75rem;
+    letter-spacing:.1em;
+    color:var(--accent);
+    opacity:.9;
+  }
+  .head h2{
+    margin:0;
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.4rem,3vw,1.85rem);
+    letter-spacing:.1em;
+  }
+
+  .prose{max-width:64ch}
+  .prose p{margin:0;font-size:.9375rem;line-height:1.95;color:var(--ink-soft)}
+  .prose p + p{margin-top:1.1em}
+  .prose .opening{
+    font-family:var(--serif);
+    font-size:clamp(1.0625rem,2.2vw,1.25rem);
+    line-height:1.85;
+    color:var(--ink);
+    letter-spacing:.01em;
+  }
+  .hl{font-style:normal;color:var(--accent);box-shadow:inset 0 -.5em 0 var(--accent-soft)}
+
+  /* ---------- 研究方向 ---------- */
+  .statement{
+    display:grid;
+    grid-template-columns:minmax(0,auto) minmax(0,1fr);
+    gap:clamp(18px,5vw,56px);
+    align-items:start;
+    margin-bottom:clamp(30px,5vw,46px);
+  }
+  .statement .big{
+    margin:0;
+    font-family:var(--serif);
+    font-size:clamp(1.5rem,3.4vw,2.1rem);
+    letter-spacing:.12em;
+    line-height:1.4;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .statement .body{
+    margin:0;
+    font-size:.9375rem;
+    line-height:1.95;
+    color:var(--ink-soft);
+    max-width:52ch;
+  }
+
+  .points{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .point{
+    background:var(--paper);
+    padding:clamp(20px,3vw,28px) clamp(18px,2.6vw,26px);
+    transition:background .35s var(--ease);
+  }
+  .point:hover{background:#fff}
+  .point .n{
+    display:block;
+    margin-bottom:16px;
+    font-family:var(--mono);
+    font-size:.6875rem;
+    letter-spacing:.16em;
+    color:var(--accent);
+  }
+  .point h3{
+    margin:0 0 8px;
+    font-size:.9375rem;
+    font-weight:600;
+    letter-spacing:.03em;
+  }
+  .point p{
+    margin:0;
+    font-size:.8438rem;
+    line-height:1.85;
+    color:var(--muted);
+  }
+
+  /* ---------- 技能 ---------- */
+  .skills{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:clamp(34px,6vw,68px);
+  }
+  .mini-label{
+    margin:0 0 20px;
+    font-family:var(--mono);
+    font-size:.6875rem;
+    letter-spacing:.2em;
+    color:var(--accent);
+  }
+  .score-list{list-style:none;margin:0;padding:0}
+  .score{
+    display:flex;align-items:baseline;
+    gap:0;
+    padding:14px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .score:first-child{border-top:1px solid var(--line-soft)}
+  .score .name{font-size:.9375rem;white-space:nowrap}
+  .score .dots{
+    flex:1 1 auto;
+    min-width:16px;
+    margin:0 14px;
+    border-bottom:1px dotted #d8d2c4;
+    transform:translateY(-5px);
+  }
+  .score .val{
+    font-family:var(--mono);
+    font-size:.9375rem;
+    font-weight:600;
+    letter-spacing:.02em;
+    color:var(--accent);
+    font-variant-numeric:tabular-nums;
+  }
+  .note{
+    margin:18px 0 0;
+    font-size:.8125rem;
+    line-height:1.85;
+    color:var(--muted);
+  }
+  .chips{
+    display:flex;flex-wrap:wrap;
+    gap:8px;
+    margin:0 0 20px;padding:0;
+    list-style:none;
+  }
+  .chip{
+    padding:6px 13px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:rgba(255,255,255,.6);
+    font-size:.8125rem;
+    color:var(--ink-soft);
+    letter-spacing:.02em;
+    transition:border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease);
+  }
+  .chip:hover{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+
+  /* ---------- 研究经历 ---------- */
+  .project{
+    display:grid;
+    grid-template-columns:196px minmax(0,1fr);
+    gap:clamp(20px,4vw,52px);
+    padding:clamp(26px,4vw,42px) 0;
+    border-top:1px solid var(--line-soft);
+  }
+  .project:first-of-type{border-top:none;padding-top:0}
+  .project:last-of-type{border-bottom:1px solid var(--line-soft)}
+  .when{
+    margin:0 0 10px;
+    font-family:var(--mono);
+    font-size:.75rem;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;
+  }
+  .tag{
+    display:inline-block;
+    margin:0 0 8px;
+    padding:3px 10px;
+    border-radius:2px;
+    background:var(--accent-soft);
+    color:var(--accent-ink);
+    font-size:.75rem;
+    line-height:1.7;
+  }
+  .role{
+    margin:0;
+    font-size:.75rem;
+    line-height:1.75;
+    color:var(--muted);
+    position:relative;
+    padding-left:12px;
+  }
+  .role::before{
+    content:"";position:absolute;left:0;top:.72em;
+    width:5px;height:1px;background:var(--muted);opacity:.6;
+  }
+  .p-main h3{
+    margin:0 0 8px;
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(1.0625rem,2.2vw,1.3rem);
+    line-height:1.62;
+    letter-spacing:.01em;
+  }
+  .sub{
+    margin:0 0 22px;
+    font-size:.875rem;
+    color:var(--muted);
+  }
+  .field{margin-bottom:22px}
+  .field-label{
+    margin:0 0 7px;
+    font-family:var(--mono);
+    font-size:.6875rem;
+    letter-spacing:.16em;
+    color:var(--muted);
+  }
+  .field-text{
+    margin:0;
+    font-size:.9063rem;
+    line-height:1.9;
+    color:var(--ink-soft);
+    max-width:46em;
+  }
+  .steps{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+  .steps li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start}
+  .step-n{
+    padding-top:3px;
+    font-family:var(--mono);
+    font-size:.6875rem;
+    letter-spacing:.06em;
+    color:var(--accent);
+    opacity:.9;
+  }
+  .steps h4{margin:0 0 3px;font-size:.9063rem;font-weight:600;letter-spacing:.03em}
+  .steps p{margin:0;font-size:.875rem;line-height:1.85;color:var(--muted)}
+
+  /* ---------- 联系 ---------- */
+  .contact-card{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    gap:24px;
+    padding:clamp(24px,4vw,40px);
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:rgba(255,255,255,.55);
+  }
+  .contact-card .label{
+    margin:0 0 10px;
+    font-family:var(--mono);
+    font-size:.6875rem;
+    letter-spacing:.2em;
+    color:var(--muted);
+  }
+  .email{
+    font-family:var(--mono);
+    font-size:clamp(.875rem,2.5vw,1.1875rem);
+    letter-spacing:.01em;
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+    padding-bottom:3px;
+    overflow-wrap:anywhere;
+    transition:color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .email:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .copy{
+    flex:none;
+    min-width:106px;
+    padding:10px 18px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:var(--paper);
+    color:var(--ink-soft);
+    font-family:inherit;
+    font-size:.8125rem;
+    letter-spacing:.1em;
+    cursor:pointer;
+    transition:border-color .3s var(--ease), color .3s var(--ease), background .3s var(--ease);
+  }
+  .copy:hover{border-color:var(--accent);color:var(--accent)}
+  .copy.done{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft)}
+  .contact-note{
+    margin:22px 0 0;
+    font-size:.8125rem;
+    line-height:1.9;
+    color:var(--muted);
+  }
+
+  /* ---------- 页脚 ---------- */
+  .foot{border-top:1px solid var(--line);padding:30px 0 38px}
+  .foot-inner{
+    display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+    gap:12px 24px;
+    font-size:.75rem;
+    letter-spacing:.06em;
+    color:var(--muted);
+  }
+  .foot-inner p{margin:0}
+  .to-top{
+    text-decoration:none;color:var(--muted);
+    border-bottom:1px solid transparent;
+    transition:color .3s var(--ease), border-color .3s var(--ease);
+  }
+  .to-top:hover{color:var(--accent);border-bottom-color:var(--accent)}
+
+  /* ---------- 入场动画 ---------- */
+  .js .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  .js .reveal.in{opacity:1;transform:none}
+  .points .point:nth-child(2){transition-delay:.08s}
+  .points .point:nth-child(3){transition-delay:.16s}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:minmax(0,1fr)}
+    .hero-mark{display:none}
+    .statement{grid-template-columns:minmax(0,1fr);gap:14px}
+    .statement .big{white-space:normal}
+  }
+  @media (max-width:820px){
+    .project{grid-template-columns:minmax(0,1fr);gap:16px}
+    .p-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+    .when{margin:0}
+    .tag{margin:0}
+  }
+  @media (max-width:760px){
+    .points{grid-template-columns:minmax(0,1fr)}
+    .skills{grid-template-columns:minmax(0,1fr);gap:38px}
+    .contact-card{align-items:flex-start;flex-direction:column;gap:20px}
+  }
+  @media (max-width:560px){
+    .nav-inner{height:58px;gap:12px}
+    .brand{font-size:.9375rem;letter-spacing:.1em}
+    .links{gap:13px}
+    .links a{font-size:.75rem;letter-spacing:.05em}
+    .hero-meta{gap:6px 18px;font-size:.8125rem}
+    .prose p,.steps p,.field-text{font-size:.9063rem}
+    .steps li{gap:10px}
+    .foot-inner{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width:380px){
+    .links a{font-size:.6875rem;letter-spacing:.02em}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .js .reveal{opacity:1;transform:none;transition:none}
+    *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">毛雅欣</a>
+    <nav class="links" aria-label="页面导航">
+      <a href="#about">概览</a>
+      <a href="#focus">方向</a>
+      <a href="#skills">技能</a>
+      <a href="#work">经历</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">复旦大学 · 经济学院保险系</p>
+        <h1>毛雅欣</h1>
+        <p class="lede">保险专业硕士研究生（研一），研究方向为保险科技。关注技术如何重塑保险的风险定价、监管协作与产品设计。</p>
+        <ul class="hero-meta">
+          <li><span class="k">院校</span>复旦大学经济学院</li>
+          <li><span class="k">身份</span>保险专硕 · 研一</li>
+          <li><span class="k">方向</span>保险科技</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn" href="#work">
+            查看研究经历
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="mailto:26210680330@m.fudan.edu.cn">邮件联系</a>
+        </div>
+      </div>
+
+      <svg class="hero-mark" viewBox="0 0 320 320" fill="none" aria-hidden="true">
+        <circle cx="160" cy="160" r="159" stroke="currentColor" stroke-width="1"/>
+        <circle cx="160" cy="160" r="118" stroke="currentColor" stroke-width="1" opacity=".8"/>
+        <circle cx="160" cy="160" r="77" stroke="currentColor" stroke-width="1" opacity=".6"/>
+        <path d="M160 1a159 159 0 0 1 159 159" stroke="#2f5c4e" stroke-width="1.5" opacity=".5"/>
+        <circle cx="160" cy="160" r="4" fill="#2f5c4e" opacity=".75"/>
+        <circle cx="160" cy="41" r="2.5" fill="#2f5c4e" opacity=".45"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 概览 -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="idx">01</span>
+        <h2>概览</h2>
+      </div>
+      <div class="prose reveal">
+        <p class="opening">我是复旦大学经济学院保险系保险专业硕士研究生，研究兴趣集中在<em class="hl">保险科技</em>。</p>
+        <p>我的习惯是把制度问题拆成可以观测、可以比较的结构，再用数据与案例去验证它：既做分析框架的搭建，也做实证层面的检验。比起给出结论，我更在意结论是怎么被推出来的。</p>
+        <p>目前的研究围绕两条线索展开——一是跨境再保险中心建设的制度成本与监管创新，二是 ESG 表现对财产保险公司投资价值的影响。方法上，我熟悉 SQL、Python、Stata、SPSS 与 R，能够独立完成从数据获取、清洗、建模到结果解释的完整过程。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 研究方向 -->
+  <section class="section" id="focus">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="idx">02</span>
+        <h2>研究方向</h2>
+      </div>
+
+      <div class="statement reveal">
+        <p class="big">保险科技</p>
+        <p class="body">保险科技不只是技术的叠加，更关乎制度如何为新技术让出空间。我关心两件事：技术在保险价值链中真正改变了什么，以及监管与制度设计如何跟上这些改变。</p>
+      </div>
+
+      <div class="points">
+        <div class="point reveal">
+          <span class="n">/ 01</span>
+          <h3>制度成本与跨境监管</h3>
+          <p>以国际再保险中心为切口，研究资本认可、资金调拨与监管可见性构成的制度摩擦，以及跨境协作的可行路径。</p>
+        </div>
+        <div class="point reveal">
+          <span class="n">/ 02</span>
+          <h3>科技驱动的风险定价</h3>
+          <p>关注数据与模型如何进入核保、定价与理赔环节，重塑风险识别方式与保险产品的边界。</p>
+        </div>
+        <div class="point reveal">
+          <span class="n">/ 03</span>
+          <h3>实证与案例研究</h3>
+          <p>借助事件研究、模型检验与公开数据，评估制度安排与 ESG 因素对保险公司价值的影响。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能 -->
+  <section class="section" id="skills">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="idx">03</span>
+        <h2>技能</h2>
+      </div>
+
+      <div class="skills">
+        <div class="reveal">
+          <p class="mini-label">语言</p>
+          <ul class="score-list">
+            <li class="score"><span class="name">雅思 IELTS</span><span class="dots"></span><span class="val">7.0</span></li>
+            <li class="score"><span class="name">大学英语六级 CET-6</span><span class="dots"></span><span class="val">521</span></li>
+            <li class="score"><span class="name">大学英语四级 CET-4</span><span class="dots"></span><span class="val">572</span></li>
+          </ul>
+          <p class="note">可阅读英文文献、撰写英文材料，并进行日常学术交流。</p>
+        </div>
+
+        <div class="reveal">
+          <p class="mini-label">软件与工具</p>
+          <ul class="chips">
+            <li class="chip">SQL</li>
+            <li class="chip">Python</li>
+            <li class="chip">Stata</li>
+            <li class="chip">SPSS</li>
+            <li class="chip">R</li>
+            <li class="chip">Choice 终端</li>
+            <li class="chip">Office</li>
+          </ul>
+          <p class="note">熟练运用 SQL、Python、Stata、SPSS、R 进行数据清洗、统计建模与结果可视化；擅长使用 Choice 金融终端获取与整理市场数据，熟练使用 Office 完成报告撰写与汇报呈现。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 研究经历 -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="idx">04</span>
+        <h2>研究经历</h2>
+      </div>
+
+      <article class="project reveal">
+        <aside class="p-meta">
+          <p class="when">2026.07 — 2026.09</p>
+          <p class="tag">第五届“保险与再保险”论坛入选论文</p>
+          <p class="role">“保险创新与再保险”分论坛汇报人</p>
+        </aside>
+
+        <div class="p-main">
+          <h3>《国际再保险中心建设与跨境监管创新探究》</h3>
+          <p class="sub">基于国际经验审视上海临港的实践与瓶颈</p>
+
+          <div class="field">
+            <p class="field-label">课题重点</p>
+            <p class="field-text">围绕上海临港国际再保险中心建设实践，构建三重制度成本分析框架，对标伦敦、百慕大、新加坡三大成熟国际中心经验，剖析跨境监管与制度建设的核心瓶颈，提出分层落地的改革路径。</p>
+          </div>
+
+          <div class="field" style="margin-bottom:0">
+            <p class="field-label">工作内容</p>
+            <ol class="steps">
+              <li>
+                <span class="step-n">①</span>
+                <div>
+                  <h4>理论框架构建</h4>
+                  <p>搭建资本认可、资金调拨、监管可见性三重制度成本分析体系，系统梳理临港“统一登记＋场内交易＋辅助监管”的制度架构与运行逻辑。</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-n">②</span>
+                <div>
+                  <h4>国际比较</h4>
+                  <p>对比伦敦、百慕大、新加坡三大国际再保险中心的制度演进路径，提炼市场信用、监管信用、产品制度三类差异化建设机制，明确本土化适配的借鉴方向。</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-n">③</span>
+                <div>
+                  <h4>方案设计</h4>
+                  <p>结合临港监管权限边界，提出“证据积累—监管互信—待遇试点—业务扩围”的递进式改革路径，并从跨境监管协作、风险融资产品、本土需求培育三个维度形成可落地的政策建议。</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <aside class="p-meta">
+          <p class="when">2025.10 — 2026.04</p>
+          <p class="tag">本科毕业论文</p>
+        </aside>
+
+        <div class="p-main">
+          <h3>《ESG 表现对我国股份制财产保险公司投资价值的影响研究》</h3>
+          <p class="sub">以人保财险为例 · 事件研究法 · 上市公司公开数据</p>
+
+          <div class="field">
+            <p class="field-label">课题重点</p>
+            <p class="field-text">立足 ESG 政策与绿色金融趋势，研究 ESG 表现对财险公司投资价值的传导机制，并以人保财险为案例展开实证分析。</p>
+          </div>
+
+          <div class="field" style="margin-bottom:0">
+            <p class="field-label">工作内容</p>
+            <ol class="steps">
+              <li>
+                <span class="step-n">①</span>
+                <div>
+                  <h4>模型运用</h4>
+                  <p>结合市场模型开展事件研究，选取人保财险立即响应国家绿色金融政策、签发全国首单网络安全综合保险、全力推进防汛救灾保险理赔工作三个案例进行量化检验。</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-n">②</span>
+                <div>
+                  <h4>数据分析</h4>
+                  <p>基于上市财险公司的公开财务与 ESG 数据，识别 ESG 融入经营决策对投资价值的提升效应，为财险公司的 ESG 战略提供实证支撑。</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 联系 -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="idx">05</span>
+        <h2>联系</h2>
+      </div>
+
+      <div class="contact-card reveal">
+        <div>
+          <p class="label">邮箱</p>
+          <a class="email" href="mailto:26210680330@m.fudan.edu.cn">26210680330@m.fudan.edu.cn</a>
+        </div>
+        <button class="copy" type="button" data-email="26210680330@m.fudan.edu.cn" aria-live="polite">复制邮箱</button>
+      </div>
+
+      <p class="contact-note reveal">欢迎就保险科技、跨境监管与再保险相关的研究与合作与我联系。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <p>© 2026 毛雅欣 · 复旦大学经济学院保险系</p>
+    <a class="to-top" href="#top">回到顶部 ↑</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var nav = document.getElementById('nav');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 导航栏滚动态 */
+  function onScroll() {
+    if (!nav) return;
+    nav.classList.toggle('is-scrolled', window.scrollY > 8);
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* 滚动入场 */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          revealIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    revealEls.forEach(function (el) { revealIO.observe(el); });
+  }
+
+  /* 导航高亮当前区块 */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.links a'));
+  var sections = links.map(function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+
+  function setActive(id) {
+    links.forEach(function (a) {
+      a.classList.toggle('is-active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  if (sections.length && 'IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* 复制邮箱 */
+  var copyBtn = document.querySelector('.copy');
+  if (copyBtn) {
+    var defaultText = copyBtn.textContent;
+    var timer = null;
+
+    var fallbackCopy = function (text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    };
+
+    copyBtn.addEventListener('click', function () {
+      var text = copyBtn.getAttribute('data-email') || '';
+
+      var done = function (ok) {
+        copyBtn.textContent = ok ? '已复制' : '复制失败';
+        copyBtn.classList.toggle('done', ok);
+        window.clearTimeout(timer);
+        timer = window.setTimeout(function () {
+          copyBtn.textContent = defaultText;
+          copyBtn.classList.remove('done');
+        }, 1800);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () {
+          done(true);
+        }).catch(function () {
+          done(fallbackCopy(text));
+        });
+      } else {
+        done(fallbackCopy(text));
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
